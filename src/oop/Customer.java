@@ -28,7 +28,12 @@ public class Customer {
     }
 
     public void addInvoice(Invoice invoice){
-        if (invoices==null){ invoices = new Invoice[2]; }
+        //TODO: modify in order to throw a checked exception when trying to add an invoice with negative total
+        if (invoices==null && invoice.total>=0) {
+            invoices = new Invoice[2];
+        } else if (invoice.total<0) {
+            //throw exception
+        }
         if (Arrays.asList(invoices).contains(invoice)) {
             System.out.println("invoice " + invoice.series +":" + invoice.number + " already on " + name + " customer's list!");
         } else {
