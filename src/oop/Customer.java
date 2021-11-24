@@ -1,5 +1,7 @@
 package oop;
 
+import exceptions.NegativeTotalException;
+
 import java.util.Arrays;
 
 //        Create a class Customer with the following attributes:
@@ -27,13 +29,9 @@ public class Customer {
         this.customer_id=customer_id;
     }
 
-    public void addInvoice(Invoice invoice){
-        //TODO: modify in order to throw a checked exception when trying to add an invoice with negative total
-        if (invoices==null && invoice.total>=0) {
-            invoices = new Invoice[2];
-        } else if (invoice.total<0) {
-            //throw exception
-        }
+    public void addInvoice(Invoice invoice) throws NegativeTotalException {
+        if (invoice.total<0) { throw new NegativeTotalException(name); }
+        if (invoices==null) { invoices = new Invoice[2]; }
         if (Arrays.asList(invoices).contains(invoice)) {
             System.out.println("invoice " + invoice.series +":" + invoice.number + " already on " + name + " customer's list!");
         } else {
@@ -57,7 +55,7 @@ public class Customer {
             System.out.println(name + " customer's invoices:");
             for (Invoice i : invoices) {
                 if (i != null) {
-                    System.out.println(i.toString());
+                    System.out.println(i);
                 }
             }
         }
