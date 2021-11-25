@@ -33,15 +33,15 @@ public class Customer {
         if (invoice.total<0) { throw new NegativeTotalException(name); }
         if (invoices==null) { invoices = new Invoice[2]; }
         if (Arrays.asList(invoices).contains(invoice)) {
-            System.out.println("invoice " + invoice.series +":" + invoice.number + " already on " + name + " customer's list!");
+            System.out.println("invoice " + invoice.series + ":" + invoice.number + " already on " + name + " customer's list!");
         } else {
             for (int i=0; i<invoices.length; i++) {
                 if (invoices[i]==null) {
                     invoices[i]=invoice;
-                    System.out.println("invoice " + invoice.series +":" + invoice.number + " added to " + name + " customer's list.");
+                    System.out.println("invoice " + invoice.series + ":" + invoice.number + " added to " + name + " customer's list.");
                     break;
                 } else if (i==invoices.length-1) {
-                    System.out.println("invoice " + invoice.series +":" + invoice.number + " NOT added to " + name + " customer's list.");
+                    System.out.println("invoice " + invoice.series + ":" + invoice.number + " NOT added to " + name + " customer's list.");
                     System.out.println("customer " + name + " has reached a maximum of " + invoices.length + " invoices");
                 }
             }
